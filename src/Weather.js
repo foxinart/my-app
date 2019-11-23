@@ -28,7 +28,7 @@ return (
         <hr />
         <div class="row">
           <div class="col-4">
-          <h1 id="city-name">Libon</h1>
+          <h1 id="city-name">Lisbon</h1>
           <ul id="data-time">
       <li id="current-day">November 11 | Monday</li>
       <li id="current-time">12:05</li>
@@ -85,7 +85,7 @@ return (
 
       <div id="open-source">
         <small>
-          <a href="https://github.com/foxinart/my-app" target="_blank">
+          <a href="https://github.com/foxinart/my-app">
             GitHub source
           </a>{" "} by Fox In Art
         </small>
