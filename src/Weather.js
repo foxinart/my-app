@@ -85,7 +85,7 @@ return (
 
       <div id="open-source">
         <small>
-          <a href="/" target="_blank">
+          <a href="https://github.com/foxinart/my-app" target="_blank">
             GitHub source
           </a>{" "} by Fox In Art
         </small>
