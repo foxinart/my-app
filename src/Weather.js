@@ -28,7 +28,7 @@ return (
         <hr />
         <div class="row">
           <div class="col-4">
-          <h1 id="city-name">Paris</h1>
+          <h1 id="city-name">Libon</h1>
           <ul id="data-time">
       <li id="current-day">November 11 | Monday</li>
       <li id="current-time">12:05</li>
