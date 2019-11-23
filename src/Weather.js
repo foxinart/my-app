@@ -19,7 +19,7 @@ return (
               autocomplete="off"
             />
           </div>
-          <div className="col-9">
+          <div className="col-2">
             <input id="btn" type="submit" value="Search" />
           </div>
         </div>
