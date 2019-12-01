@@ -1,11 +1,30 @@
 
-// eslint-disable-next-line
 import React, { useState } from "react";
-// eslint-disable-next-line
 import axios from "axios";
 
-export default function Weather () {
-return (
+export default function Weather() {
+
+
+  const [weatherData, setWeatherData] = useState({ready: false});
+
+function displayResponse(response) {
+  console.log(response.data);
+  setWeatherData({
+    ready: true,
+    day: "November 11 | Monday",
+    time: "12:05",
+    description: response.data.weather[0].description,
+    icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    temperature: response.data.main.temp,
+    pressure: response.data.main.pressure,
+    humidity: response.data.main.humidity,
+    wind: response.data.wind.speed,
+    city: response.data.name
+  });
+}
+
+if (weatherData.ready) {
+  return (
     <div className="App">
       <section className="weather-app">
       <div className="search">
@@ -28,11 +47,11 @@ return (
         <hr />
         <div class="row">
           <div class="col-4">
-          <h1 id="city-name">Lisbon</h1>
+          <h1 id="city-name">{weatherData.city}</h1>
           <ul id="data-time">
-      <li id="current-day">November 11 | Monday</li>
-      <li id="current-time">12:05</li>
-      <li id="status">Partly cloudy</li>
+      <li>{weatherData.day}</li>
+      <li>{weatherData.time}</li>
+      <li>{weatherData.description}</li>
     </ul>
           </div>
 
@@ -40,12 +59,12 @@ return (
             <div className="clearfix">
               <img
                 id="icon-today"
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt=""
+                src={weatherData.icon}
+                alt={weatherData.description}
               />
               <div>
       <div className="weather-temperature-today">
-        <span id="temperature">24</span>
+        <span id="temperature">{Math.round(weatherData.temperature)}</span>
 
         <span className="weather-unit">
           <small>
@@ -66,15 +85,13 @@ return (
           <div className="col-4">
           <ul id="other-values">
       <li>
-        Atm. pressure: 1000
-        <span id="pressure" /> hPa
+        Atm. pressure: {Math.round(weatherData.pressure)} hPa
       </li>
       <li>
-        Humidity: 50
-        <span id="humidity" />%
+        Humidity: {Math.round(weatherData.humidity)}%
       </li>
       <li>
-        Wind: 4<span id="wind" /> km/h
+        Wind: {weatherData.wind} km/h
       </li>
     </ul>
           </div>
@@ -92,4 +109,14 @@ return (
       </div>
     </div>
 );
+  
+} else {
+  const apiKey = "c5c1992383057589b3e373582566187c";
+  let city = "Lisbon";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayResponse);
+
+  return "Loading";
+}
+
 }
