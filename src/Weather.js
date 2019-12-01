@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
+import Day from "./Day";
 import axios from "axios";
+
 
 export default function Weather(props) {
 
@@ -11,8 +13,7 @@ function displayResponse(response) {
   console.log(response.data);
   setWeatherData({
     ready: true,
-    day: "November 11 | Monday",
-    time: "12:05",
+    date: new Date(response.data.dt * 1000),
     description: response.data.weather[0].description,
     icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
     temperature: response.data.main.temp,
@@ -48,10 +49,14 @@ if (weatherData.ready) {
         <div class="row">
           <div class="col-4">
           <h1 id="city-name">{weatherData.city}</h1>
+          <div>
+            
+          </div>
           <ul id="data-time">
-      <li>{weatherData.day}</li>
-      <li>{weatherData.time}</li>
-      <li>{weatherData.description}</li>
+      <li>
+      <Day date={weatherData.date} />
+      </li>
+      <li id="description">{weatherData.description}</li>
     </ul>
           </div>
 

@@ -128,25 +128,25 @@ li:first-letter {
   text-decoration: none;
 }
 
-ul#data-time {
+ul {
   font-size: 14px;
   color: #616161;
   text-align: left;
   font-family: "Open Sans", sans-serif;
+}
+
+ul#data-time {
   display: block;
   position: relative;
   top: 35px;
 }
 
 ul#other-values {
-  font-size: 14px;
-  color: #616161;
-  text-align: left;
-  font-family: "Open Sans", sans-serif;
   display: block;
   position: relative;
   top: 79px;
 }
+
 
 div#open-source {
   font-size: 15px;
