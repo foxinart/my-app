@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Day from "./Day";
 import axios from "axios";
 import Icon from "./Icon";
+import Temperature from "./Temperature";
 
 
 export default function Weather(props) {
@@ -86,19 +87,7 @@ if (weatherData.ready) {
             
               <div>
       <div className="weather-temperature-today">
-        <span id="temperature">{Math.round(weatherData.temperature)}</span>
-
-        <span className="weather-unit">
-          <small>
-            <a href="/" id="celsius" className="active">
-              ºC
-            </a>
-            |
-            <a href="/" id="fahrenheit">
-              ºF
-            </a>
-          </small>
-        </span>
+        <Temperature celsius={weatherData.temperature} />
       </div>
     </div>
             </div>
