@@ -107,8 +107,6 @@ if (weatherData.ready) {
     </ul>
           </div>
         </div>
-
-        <hr id="second-line" />
       </section>
 
       <div id="open-source">

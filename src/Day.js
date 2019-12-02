@@ -34,7 +34,7 @@ export default function Day(props) {
 
     return (
     <div>
-    {month} {day} | {weekDay} | {hours}:{minuties}
+    {month} {day} • {weekDay} • {hours}:{minuties}
     </div>
     );
 }
