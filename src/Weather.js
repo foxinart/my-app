@@ -6,16 +6,15 @@ import axios from "axios";
 
 export default function Weather(props) {
 
-
   const [weatherData, setWeatherData] = useState({ready: false});
+  const [city, setCity] = useState(props.defaultCity);
 
 function displayResponse(response) {
-  console.log(response.data);
   setWeatherData({
     ready: true,
     date: new Date(response.data.dt * 1000),
     description: response.data.weather[0].description,
-    icon: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     temperature: response.data.main.temp,
     pressure: response.data.main.pressure,
     humidity: response.data.main.humidity,
@@ -24,19 +23,37 @@ function displayResponse(response) {
   });
 }
 
+function search() {
+  const apiKey = "c5c1992383057589b3e373582566187c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayResponse);
+}
+
+function sumbmitCity(event) {
+  event.preventDefault();
+search ();
+}
+
+function changeCity(event) {
+  setCity(event.target.value);
+}
+
 if (weatherData.ready) {
   return (
     <div className="App">
       <section className="weather-app">
       <div className="search">
-      <form id="search-form">
+      <form onSubmit={sumbmitCity} id="search-form">
         <div className="row">
           <div className="col-3">
+
             <input
               id="search-input"
               type="text"
               placeholder="Type a city..."
-              autocomplete="off"
+              autoComplete="off"
+              autoFocus="on"
+              onChange={changeCity}
             />
           </div>
           <div className="col-2">
@@ -46,8 +63,8 @@ if (weatherData.ready) {
       </form>
     </div>
         <hr />
-        <div class="row">
-          <div class="col-4">
+        <div className="row">
+          <div className="col-4">
           <h1 id="city-name">{weatherData.city}</h1>
           <div>
             
@@ -73,7 +90,7 @@ if (weatherData.ready) {
 
         <span className="weather-unit">
           <small>
-            <a href="/" id="celsius" class="active">
+            <a href="/" id="celsius" className="active">
               ºC
             </a>
             |
@@ -116,9 +133,7 @@ if (weatherData.ready) {
 );
   
 } else {
-  const apiKey = "c5c1992383057589b3e373582566187c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayResponse);
+  search();
 
   return "Loading";
 }
