@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Day from "./Day";
 import axios from "axios";
+import Icon from "./Icon";
 
 
 export default function Weather(props) {
@@ -14,7 +15,7 @@ function displayResponse(response) {
     ready: true,
     date: new Date(response.data.dt * 1000),
     description: response.data.weather[0].description,
-    icon: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    icon: response.data.weather[0].icon,
     temperature: response.data.main.temp,
     pressure: response.data.main.pressure,
     humidity: response.data.main.humidity,
@@ -79,11 +80,10 @@ if (weatherData.ready) {
 
           <div className="col-4">
             <div className="clearfix">
-              <img
-                id="icon-today"
-                src={weatherData.icon}
-                alt={weatherData.description}
-              />
+              <div id="icon-forecast">
+              <Icon code={weatherData.icon} />
+              </div>
+            
               <div>
       <div className="weather-temperature-today">
         <span id="temperature">{Math.round(weatherData.temperature)}</span>

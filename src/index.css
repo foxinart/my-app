@@ -92,6 +92,8 @@ li:first-letter {
   font-family: "Open Sans", sans-serif;
   font-weight: lighter;
   display: block;
+  position: relative;
+  top: 10px;
 }
 
 .weather-temperature-today small {
@@ -162,10 +164,11 @@ hr#second-line {
   top: -1px;
 }
 
-img#icon-forecast {
-  block-size: 65px;
+div#icon-forecast {
+
   text-align: center;
   position: relative;
   margin: 0;
-  left: 5px;
+  left: -15px;
+  top: 10px;
 }
